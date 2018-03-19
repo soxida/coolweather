@@ -73,7 +73,7 @@ public class CoolWeatherDB {
             ContentValues cv = new ContentValues();
             cv.put("city_name", city.getCityName());
             cv.put("city_code", city.getCityCode());
-            cv.put("provinceId", city.getProvinceId());
+            cv.put("province_id", city.getProvinceId());
             db.insert("City", null, cv);
         }
     }
@@ -81,7 +81,7 @@ public class CoolWeatherDB {
     // 从数据库读取所有的省份信息
     public List<City> loadCities(int provinceId) {
         List<City> list = new ArrayList<>();
-        Cursor cr = db.rawQuery("select * from City where provinceId = '"+ String.valueOf(provinceId) +"'", null);
+        Cursor cr = db.rawQuery("select * from City where province_id = '"+ String.valueOf(provinceId) +"'", null);
         if (cr.moveToFirst()) {
             do {
                 City city = new City();
@@ -104,7 +104,7 @@ public class CoolWeatherDB {
             ContentValues cv = new ContentValues();
             cv.put("county_name", county.getCountyName());
             cv.put("county_code", county.getCountyCode());
-            cv.put("cityId", county.getCityId());
+            cv.put("city_id", county.getCityId());
             db.insert("County", null, cv);
         }
     }
@@ -112,7 +112,7 @@ public class CoolWeatherDB {
     // 从数据库读取所有的省份信息
     public List<County> loadCounties(int cityId) {
         List<County> list = new ArrayList<>();
-        Cursor cr = db.rawQuery("select * from County where cityId = '"+ String.valueOf(cityId) +"'", null);
+        Cursor cr = db.rawQuery("select * from County where city_id = '"+ String.valueOf(cityId) +"'", null);
         if (cr.moveToFirst()) {
             do {
                 County county = new County();
